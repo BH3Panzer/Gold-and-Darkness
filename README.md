@@ -1,3 +1,3 @@
 # Gold-and-Darkness
-Un roguelite français pour Numworks\n
+<p>Un roguelite français pour Numworks</p>
 /!\ démo d'affichage de 36 tuiles
