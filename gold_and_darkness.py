@@ -9,10 +9,11 @@ clock = pg.time.Clock()
 screen = pg.display.set_mode((1000, 800), pg.DOUBLEBUF)
 pg.display.set_caption('Gold and Darkness')
 pg.mixer.pre_init(buffer=512)
-background = pg.Rect(0, 0, 600, 500)
+background = pg.Rect(0, 0, 1000, 800)
 l = locals()  # C est le classic lui
 camerax = 0  # Position x default camera
 cameray = 0  # Position y default camera
+hendek = pg.font.SysFont(None,50) #définie la police
 
 
 # Class pour le jeu pour une partie
@@ -143,6 +144,9 @@ while run:
     if player.right:
         player.x += 2
     player.draw()
+    
+    texte = hendek.render(str(int(clock.get_fps())),True,(255,255,255)) #prend les fps pour les afficher
+    screen.blit(texte,(900,10)) #affiche les fps directement dans le jeu
+
     pg.display.flip()
-    print(int(clock.get_fps()))
     clock.tick(fps)
