@@ -6,10 +6,12 @@ pg.init()
 fps = 60  # Les fps wesh
 run = True
 clock = pg.time.Clock()
-screen = pg.display.set_mode((1000, 800), pg.DOUBLEBUF)
+WIDTH = 1000
+HEIGHT = 800
+screen = pg.display.set_mode((WIDTH, HEIGHT), pg.DOUBLEBUF)
 pg.display.set_caption('Gold and Darkness')
 pg.mixer.pre_init(buffer=512)
-background = pg.Rect(0, 0, 1000, 800)
+background = pg.Rect(0, 0, WIDTH, HEIGHT)
 l = locals()  # C est le classic lui
 camerax = 0  # Position x default camera
 cameray = 0  # Position y default camera
