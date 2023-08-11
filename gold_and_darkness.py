@@ -46,6 +46,18 @@ class Map:
     def __init__(self, size):
         self.size = size  # Taille de la map
 
+    def drawMap(self):
+        for i in range(3618):
+            l["tile" + str(i)].draw()
+
+    def generateMap(self):
+        i = 0
+        for x in range(67):
+            for y in range(54):
+                l["tile" + str(i)] = Tile(x * 15, y * 15, 2, wall=False)
+                l["tile" + str(i)].loadTexture()
+                i += 1
+
 
 # Class pour toute entitee
 # autre que le joueur
@@ -96,21 +108,9 @@ class Tile:
 player = Player(50, 50, 100)
 
 
-def fill_c():
-    i = 0
-    for x in range(67):
-        for y in range(54):
-            l["tile" + str(i)] = Tile(x * 15, y * 15, 2, wall=False)
-            l["tile" + str(i)].loadTexture()
-            i += 1
 
-
-def fill_d():
-    for i in range(3618):
-        l["tile" + str(i)].draw()
-
-
-fill_c()
+map=Map(3618)
+map.generateMap()
 while run:
     pg.draw.rect(screen, (0, 0, 0), background)
     for event in pg.event.get():
@@ -136,7 +136,7 @@ while run:
         if event.type == pg.QUIT:
             pg.quit()
 
-    fill_d()
+    map.drawMap()
     if player.up:
         player.y -= 2
         cameray -= 2
