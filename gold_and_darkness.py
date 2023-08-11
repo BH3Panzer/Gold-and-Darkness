@@ -105,7 +105,7 @@ class Tile:
 
 
 
-player = Player(50, 50, 100)
+player = Player(WIDTH/2, HEIGHT/2, 100) 
 
 
 
