@@ -43,17 +43,20 @@ class Player:
 
 # Class pour la map
 class Map:
-    def __init__(self, size):
-        self.size = size  # Taille de la map
+    def __init__(self, xsize, ysize):
+        self.size = [xsize, ysize]  # Taille de la map
+        self.size[0] = int(self.size[0])
+        self.size[1] = int(self.size[1])
 
     def drawMap(self):
-        for i in range(3618):
+        total = self.size[0] * self.size[1]
+        for i in range(int(total)):
             l["tile" + str(i)].draw()
 
     def generateMap(self):
         i = 0
-        for x in range(67):
-            for y in range(54):
+        for x in range(int(self.size[0])):
+            for y in range(int(self.size[1])):
                 l["tile" + str(i)] = Tile(x * 15, y * 15, 2, wall=False)
                 l["tile" + str(i)].loadTexture()
                 i += 1
@@ -109,7 +112,7 @@ player = Player(WIDTH/2, HEIGHT/2, 100)
 
 
 
-map=Map(3618)
+map = Map(WIDTH / 15, HEIGHT / 15)
 map.generateMap()
 while run:
     pg.draw.rect(screen, (0, 0, 0), background)
