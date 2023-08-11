@@ -38,7 +38,7 @@ class Player:
         self.right = False
 
     def draw(self):
-        pg.draw.circle(screen, (255, 0, 0), (self.x, self.y), 5, 0, False, False, False, False)
+        pg.draw.circle(screen, (255, 0, 0), (self.x-camerax, self.y-cameray), 5, 0, False, False, False, False)
 
 
 # Class pour la map
@@ -89,7 +89,7 @@ class Tile:
 
     def draw(self):  # Dessine une tuile
         self.changeLight()
-        screen.blit(self.image, (self.x, self.y))
+        screen.blit(self.image, (self.x-camerax, self.y-cameray))
 
 
 
@@ -139,12 +139,16 @@ while run:
     fill_d()
     if player.up:
         player.y -= 2
+        cameray -= 2
     if player.down:
         player.y += 2
+        cameray += 2
     if player.left:
         player.x -= 2
+        camerax -= 2
     if player.right:
         player.x += 2
+        camerax += 2
     player.draw()
     
     texte = hendek.render(str(int(clock.get_fps())),True,(255,255,255)) #prend les fps pour les afficher
