@@ -1,6 +1,7 @@
 from math import *
-
+from random import *
 import pygame as pg
+import perlin
 
 pg.init()
 fps = 60  # Les fps wesh
@@ -54,10 +55,16 @@ class Map:
             l["tile" + str(i)].draw()
 
     def generateMap(self):
+        p = perlin.perlin(randint(0,9999))
         i = 0
         for x in range(int(self.size[0])):
             for y in range(int(self.size[1])):
-                l["tile" + str(i)] = Tile(x * 15, y * 15, 2, wall=False)
+                weight = p.two(x, y)
+                weight = abs(weight)
+                if weight >=2 :
+                    l["tile" + str(i)] = Tile(x * 15, y * 15, 1, wall=True)
+                else:
+                    l["tile" + str(i)] = Tile(x * 15, y * 15, 1, wall=False)
                 l["tile" + str(i)].loadTexture()
                 i += 1
 
@@ -90,7 +97,7 @@ class Tile:
         self.dark = 150
         self.calculateDistance()
         if self.wall == True:
-            self.dark -= 30
+            self.dark -= 75
         if self.player_distance <=150:
             self.dark -= int(self.player_distance/1.5)
         else:
@@ -108,10 +115,7 @@ class Tile:
 
 
 
-player = Player(WIDTH/2, HEIGHT/2, 100) 
-
-
-
+player = Player(WIDTH/2, HEIGHT/2, 100)
 map = Map(WIDTH / 15, HEIGHT / 15)
 map.generateMap()
 while run:
