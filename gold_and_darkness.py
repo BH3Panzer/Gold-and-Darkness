@@ -75,13 +75,13 @@ class Tile:
         self.dark = 150
         self.calculateDistance()
         if self.wall == True:
-            self.dark -= 10
-        if self.player_distance >= 25:
-            self.dark -= 10
-        if self.player_distance >= 50:
-            self.dark -= 40
-        if self.player_distance >= 75:
-            self.dark -= 60
+            self.dark -= 30
+        if self.player_distance <=150:
+            self.dark -= int(self.player_distance/1.5)
+        else:
+            self.dark = 0
+        if self.dark < 0:
+            self.dark = 0
         self.image.set_alpha(self.dark)
 
     def calculateDistance(self):
