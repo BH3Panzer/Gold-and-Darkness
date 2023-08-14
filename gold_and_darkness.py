@@ -61,7 +61,7 @@ class Map:
             for y in range(int(self.size[1])):
                 weight = p.two(x, y)
                 weight = abs(weight)
-                if weight >=2 :
+                if weight >=3 :
                     l["tile" + str(i)] = Tile(x * 15, y * 15, 1, wall=True)
                 else:
                     l["tile" + str(i)] = Tile(x * 15, y * 15, 1, wall=False)
